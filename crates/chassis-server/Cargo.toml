@@ -1,0 +1,12 @@
+[package]
+name = "chassis-server"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+chassis-core.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+
+[lints]
+workspace = true
