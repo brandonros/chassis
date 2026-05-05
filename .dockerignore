@@ -8,3 +8,7 @@ README.md
 *.md
 .env
 .env.*
+deploy/
+.direnv/
+flake.lock
+flake.nix

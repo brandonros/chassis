@@ -1,0 +1,39 @@
+app-template:
+  controllers:
+    main:
+      replicas: 1
+      containers:
+        main:
+          image:
+            repository: ghcr.io/brandonros/chassis
+            tag: latest
+            pullPolicy: IfNotPresent
+          env:
+            BIND_ADDR: "0.0.0.0:3000"
+            ADMIN_BIND_ADDR: "0.0.0.0:9090"
+            LOG_FORMAT: json
+            OTEL_SERVICE_NAME: chassis
+            JWT_SECRET:
+              valueFrom:
+                secretKeyRef:
+                  name: chassis
+                  key: jwt-secret
+          probes:
+            liveness:
+              enabled: true
+              type: HTTP
+              path: /livez
+              port: 3000
+            readiness:
+              enabled: true
+              type: HTTP
+              path: /readyz
+              port: 3000
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 3000
+        admin:
+          port: 9090

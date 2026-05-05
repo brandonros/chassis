@@ -1,2 +1,17 @@
 .direnv
 /target
+
+# Nix
+result
+result-*
+
+# Helm
+deploy/charts/
+deploy/*.tgz
+
+# OS
+.DS_Store
+
+# Local env
+.env
+.env.local
